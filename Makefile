@@ -6,38 +6,40 @@ OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I/usr/include -Imlx
 
+LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
-LIBFTDIR = ./libft
 
-MINILIBX_DIR = ./libx
+
+MLX_DIR = ./libx
+MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
+all: $(NAME)
+
 .c.o:
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
-all: $(NAME)
-
-$(NAME): $(OBJS) $(LIBFT) 
+$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)
 
 $(LIBFT): 
 
-	$(MAKE) -C $(LIBFTDIR)
+	$(MAKE) -C $(LIBFT_DIR)
 
-$(MINILIBX)
-	$(MAKE) -C $(MINILIBX_DIR)
+$(MLX_LIB)
+	$(MAKE) -C $(MLX_DIR)
 
 clean:
-	$(MAKE) clean -C $(LIBFTDIR)
-	$(MAKE) clean -C $(MINILIBX_DIR)
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(MAKE) fclean -C $(LIBFTDIR)
+	$(MAKE) fclean -C $(LIBFT_DIR)
 	$(RM) $(NAME)
 
 re: fclean all
