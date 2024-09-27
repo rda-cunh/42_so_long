@@ -6,12 +6,12 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/09/27 18:36:45 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/09/27 19:00:16 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //#include "../inc/so_long.h"
-#include <mlx.h> //to delete and include in header (just for testing)
+#include <mlx.h> 
 
 int main(void)
 {
@@ -27,5 +27,5 @@ int main(void)
 
 //    mlx_destroy_display(mlx);
 //    free(mlx);
-    return (0); 
+//    return (0); 
 }

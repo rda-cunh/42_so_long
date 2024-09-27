@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC_DIR = SRC_DIR
+SRC_DIR = src
 SRCS = $(SRC_DIR)/main.c	
 OBJS = $(SRCS:.c=.o)
 
@@ -10,7 +10,7 @@ LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
 
-MLX_DIR = ./libx
+MLX_DIR = ./mlx
 MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
@@ -20,17 +20,16 @@ RM = rm -rf
 
 all: $(NAME)
 
-.c.o:
+%.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)
 
 $(LIBFT): 
-
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(MLX_LIB)
+$(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
 
 clean:
