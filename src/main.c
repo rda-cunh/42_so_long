@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/10 19:10:28 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/10 20:09:51 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,37 @@ int	key_hook(int keycode, void *param)
 	return (0);
 }
 
+void start_game(char *file)
+{
+	char	**map;
+	int		i; 
+
+	map = read_map(file);
+	if (map = NULL)
+	{
+		ft_printf("Failed to read map.\n");
+		return (1); 
+	}
+
+	//here i whant to do something simple with the map like print it. 
+
+	//free the map after using it
+	while (map[i] != NULL)
+		free(map[i]);
+	free (map); 
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		ft_printf("Invalid number of arguments.\n");
+	start_game(argv[1]); // starting the game with the map file
+	return (0);  
+}
+
+/*
+// my main to create a window, and image, paint all pixels red and put the image on window. Also closes window using cross or ESC
+
 int main(void)
 {
     void    *mlx;
@@ -79,3 +110,4 @@ int main(void)
 //	free(mlx);
 	return (0); 
 }
+*/
