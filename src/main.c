@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/08 19:30:48 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/10 19:10:28 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,24 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
+}
+
+void	fill_image_with_color(t_data *img, int width, int height, int color)
+{
+	int x;
+	int y;
+
+	y = 0; 
+	while (y < height)
+	{
+		x = 0;
+		while (x < width)
+		{
+			my_mlx_pixel_put(img, x, y, color);
+			x++; 
+		}
+		y++;
+	}
 }
 
 int	key_hook(int keycode, void *param)
@@ -51,7 +69,8 @@ int main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, 
 				&img.line_length, &img.endian);
-	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000);
+//	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000);
+	fill_image_with_color(&img, 1920, 1080, 0x00FF0000); 
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_key_hook(mlx_win, key_hook, NULL);
 	mlx_hook(mlx_win, 17, 0, mlx_win, NULL);  // 17 is the event for window close
