@@ -3,18 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/08 19:22:28 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/14 11:07:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
-# include <mlx.h>
+# include <fcntl.h>
+# include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
+# include <mlx.h>
+
+
+void start_game(char *file);
+
+char    **read_map(char *file);
+int     get_file_height(char *file); 
+
 
 
 #endif
