@@ -12,14 +12,38 @@
 
 #include "../inc/so_long.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+void start_game(char *file)
+{
+	char	**map;
+	int		i; 
 
+	map = read_map(file);
+	if (map = NULL)
+	{
+		ft_printf("Failed to read map.\n");
+		return (1); 
+	}
+
+	//here i whant to do something simple with the map like print it
+
+	//free the map after using it
+	while (map[i] != NULL)
+		free(map[i]);
+	free (map); 
+}
+
+int	main(int argc, char **argv)
+{
+	if (argc != 2)
+		ft_printf("Invalid number of arguments.\n");
+	start_game(argv[1]); // starting the game with the map file
+	return (0);  
+}
+
+/*
+//some code to test minilibX
+
+//replace the pixel put function of the minilibX library for more efficient one
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char *dst;
@@ -28,6 +52,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+//function to manipulate pixels and paint all pixels in one color (red)
 void	fill_image_with_color(t_data *img, int width, int height, int color)
 {
 	int x;
@@ -46,6 +71,7 @@ void	fill_image_with_color(t_data *img, int width, int height, int color)
 	}
 }
 
+//hook configuration for when the user press ESC  
 int	key_hook(int keycode, void *param)
 {
 	(void)param; 
@@ -54,37 +80,7 @@ int	key_hook(int keycode, void *param)
 	return (0);
 }
 
-void start_game(char *file)
-{
-	char	**map;
-	int		i; 
-
-	map = read_map(file);
-	if (map = NULL)
-	{
-		ft_printf("Failed to read map.\n");
-		return (1); 
-	}
-
-	//here i whant to do something simple with the map like print it. 
-
-	//free the map after using it
-	while (map[i] != NULL)
-		free(map[i]);
-	free (map); 
-}
-
-int	main(int argc, char **argv)
-{
-	if (argc != 2)
-		ft_printf("Invalid number of arguments.\n");
-	start_game(argv[1]); // starting the game with the map file
-	return (0);  
-}
-
-/*
 // my main to create a window, and image, paint all pixels red and put the image on window. Also closes window using cross or ESC
-
 int main(void)
 {
     void    *mlx;
@@ -100,8 +96,8 @@ int main(void)
 	img.img = mlx_new_image(mlx, 1920, 1080);
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, 
 				&img.line_length, &img.endian);
-//	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000);
-	fill_image_with_color(&img, 1920, 1080, 0x00FF0000); 
+	fill_image_with_color(&img, 1920, 1080, 0x00FF0000);
+	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000); //paint the center pixel in black
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_key_hook(mlx_win, key_hook, NULL);
 	mlx_hook(mlx_win, 17, 0, mlx_win, NULL);  // 17 is the event for window close
