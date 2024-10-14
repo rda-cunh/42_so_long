@@ -3,35 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/14 19:56:40 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/14 23:57:40 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void start_game(char *file)
+void	start_game(char *file)
 {
 	char	**map;
-	int		map_height; 
+	int		map_height;
 
 	map = read_map(file, &map_height);
 	if (map == NULL)
 	{
 		ft_printf("Failed to read map.\n");
-		return ; 
+		return ;
 	}
+	//clean up memory after using the map
 	clean_map(map, map_height);
 }
 
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
+	{
 		ft_printf("Invalid number of arguments.\n");
+		return (1); 
+	}
 	start_game(argv[1]); // starting the game with the map file
-	return (0);  
+	return (0);
 }
 
 /*
