@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/10 20:09:51 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/14 19:56:40 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 void start_game(char *file)
 {
 	char	**map;
-	int		i; 
+	int		map_height; 
 
-	map = read_map(file);
-	if (map = NULL)
+	map = read_map(file, &map_height);
+	if (map == NULL)
 	{
 		ft_printf("Failed to read map.\n");
-		return (1); 
+		return ; 
 	}
-
-	//here i whant to do something simple with the map like print it
-
-	//free the map after using it
-	while (map[i] != NULL)
-		free(map[i]);
-	free (map); 
+	clean_map(map, map_height);
 }
 
 int	main(int argc, char **argv)

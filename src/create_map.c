@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/14 11:06:03 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/14 19:53:20 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,51 @@
 int get_file_height(char *file)
 {
     int fd = open(file, O_RDONLY);
-    int height = 0;
+    int height;
     char *line;
 
+    height = 0; 
     if (fd < 0)
     {
         ft_printf("Error: Could not open file.\n");
-        return (-1);  // Error opening file
+        return (-1);
     }
-
     while ((line = get_next_line(fd)))
     {
         height++;
-        free(line);  // Free line after
+        free(line);  // Free line after reading
     }
     close(fd);
-    return height;
+    return (height);
 }
 
 //read the map into a 2 dimension array
-char **read_map(char *file)
+char **read_map(char *file, int map_height)
 {
     int fd = open(file, O_RDONLY);
     char *line;
     char **map;
-    int i = 0;
-    int map_height;
-    int map_width = 0;
+    int i;
+    int j; 
+    int map_width;
 
+    i = 0;
+    j = 0; 
+    map_height = 0; 
+    map_width = 0; 
     if (fd < 0)
     {
         ft_printf("Error: Could not open file.\n");
         return (NULL);
     }
-
-    // use function to get the height of the map
     map_height = get_file_height(file);
     if (map_height <= 0)
     {
         ft_printf("Error: Invalid map height.\n");
         return (NULL);
     }
-
     // Allocate memory for the 2D array
     map = (char **)malloc(sizeof(char *) * (map_height + 1)); 
-
     // Read each line of the file and store in array
     while ((line = get_next_line(fd)))
     {
@@ -70,14 +70,16 @@ char **read_map(char *file)
         free(line);  // Free the line after copy
         i++;
     }
-
     map[i] = NULL;  // Set the last element to NULL
     close(fd);
-
-    // Print the map (for testing)
+    // Print the map 
     ft_printf("Map size: %d x %d\n", map_width, map_height);
-    for (int j = 0; j < map_height; j++)
-        ft_printf("%s", map[j]); 
-
-    return map;
+    while (j <= map_height)
+    {
+        ft_printf("%s", map[j]);
+        j++;  
+    }
+    ft_printf("\n");
+    *map_height = map_height;  
+    return (map);
 }

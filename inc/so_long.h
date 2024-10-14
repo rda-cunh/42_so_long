@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/14 11:07:35 by codespace        ###   ########.fr       */
+/*   Updated: 2024/10/14 19:54:05 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h> //memory allocation and program termination (exit)
 # include <unistd.h> //functions like read and close
 # include <mlx.h> //MiniliX graphic library
+# include "../libft/libft.h"
 
 //struct to store minilibx image information 
 typedef struct	s_data 
@@ -31,6 +32,8 @@ typedef struct	s_data
 void    start_game(char *file);
 
 char    **read_map(char *file);
-int     get_file_height(char *file); 
+int     get_file_height(char *file);
+
+void    clean_map(char **map, int map_height)
 
 #endif
