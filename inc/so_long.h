@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/14 23:47:55 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/15 00:53:34 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_data
 	int		endian;
 }				t_data;
 
-void	start_game(char *file);
+void	start_game(char *file, int *map_height);
 
 char	**read_map(char *file, int *map_height);
 int		get_file_height(char *file);

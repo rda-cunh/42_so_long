@@ -15,7 +15,7 @@ MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 all: $(NAME)
