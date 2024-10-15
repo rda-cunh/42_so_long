@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/15 00:14:12 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/15 23:44:18 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ char	**read_map(char *file, int *map_height)
 	fd = open(file, O_RDONLY);
     i = 0;
     j = 0; 
-    map_height = 0; 
-    map_width = 0; 
+    map_width = 0;
     if (fd < 0)
     {
         ft_printf("Error: Could not open file.\n");
@@ -90,11 +89,11 @@ char	**read_map(char *file, int *map_height)
 
     // Print the map 
     ft_printf("Map size: %d x %d\n", map_width, *map_height);
-    while (j <= *map_height)
+    while (j < *map_height)
     {
         ft_printf("%s", map[j]);
         j++;  
     }
-
+    ft_printf("\n");
     return (map);
 }
