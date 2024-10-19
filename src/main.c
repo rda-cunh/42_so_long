@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/15 00:51:41 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:51:51 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	start_game(char *file, int *map_height)
 	map = read_map(file, map_height);
 	if (map == NULL)
 	{
-		ft_printf("Failed to read map.\n");
+		ft_printf("Error\nFailed to read map.\n");
 		return ;
 	}
 	//clean up memory after using the map
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		ft_printf("Invalid number of arguments.\n");
+		ft_printf("Error\nInvalid number of arguments.\n");
 		return (1); 
 	}
 	start_game(argv[1], &map_height); // starting the game with the map file
@@ -96,7 +96,7 @@ int main(void)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, 
 				&img.line_length, &img.endian);
 	fill_image_with_color(&img, 1920, 1080, 0x00FF0000);
-	my_mlx_pixel_put(&img, 960, 540, 0x00FF0000); //paint the center pixel in black
+	my_mlx_pixel_put(&img, 960, 540, 0x00000000); //paint the center pixel in black
 	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
 	mlx_key_hook(mlx_win, key_hook, NULL);
 	mlx_hook(mlx_win, 17, 0, mlx_win, NULL);  // 17 is the event for window close

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/15 23:44:18 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:53:59 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,13 @@ char	**read_map(char *file, int *map_height)
     map_width = 0;
     if (fd < 0)
     {
-        ft_printf("Error: Could not open file.\n");
+        ft_printf("Error\nCould not open file.\n");
         return (NULL);
     }
     *map_height = get_file_height(file);
     if (*map_height <= 0)
     {
-        ft_printf("Error: Invalid map height.\n");
+        ft_printf("Error\nInvalid map height.\n");
         return (NULL);
     }
     // Allocate memory for the 2D array
@@ -64,7 +64,7 @@ char	**read_map(char *file, int *map_height)
 	if (!map)
 	{
 		close(fd);
-		ft_printf("Error: Memory allocation failed for map.\n");
+		ft_printf("Error\nMemory allocation failed for map.\n");
 		return (NULL);
 	}
 
@@ -73,10 +73,10 @@ char	**read_map(char *file, int *map_height)
     {
         if (i == 0)
             map_width = ft_strlen(line) - 1;  
-        map[i] = ft_strdup(line);  // Copy the line to the map array~
+        map[i] = ft_strdup(line);  // Copy the line to the map array
 		if (!map[i])
 		{
-			ft_printf("Error: Memory allocation failed for line %d.\n", i);
+			ft_printf("Error\nMemory allocation failed for line %d.\n", i);
 			clean_map(map, i);
 			close (fd);
 			return (NULL); 
@@ -95,5 +95,6 @@ char	**read_map(char *file, int *map_height)
         j++;  
     }
     ft_printf("\n");
+    
     return (map);
 }
