@@ -9,9 +9,8 @@ INCLUDES = -I/usr/include -Imlx
 LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
 
-
 MLX_DIR = ./mlx
-MLX_LIB = $(MLX_DIR)/libmlx_$(UNAME).a
+MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 CC = gcc
