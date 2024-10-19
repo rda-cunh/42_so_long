@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/19 17:53:59 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/19 17:54:34 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_file_height(char *file)
     height = 0;
     if (fd < 0)
     {
-        ft_printf("Error: Could not open file.\n");
+        ft_printf("Error\nCould not open file.\n");
         return (-1);
     }
     while ((line = get_next_line(fd)))
