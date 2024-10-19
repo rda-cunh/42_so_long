@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/19 17:36:55 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/20 00:56:22 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <fcntl.h> //used for file control and opening files (maps)
 # include <stdlib.h> //memory allocation and program termination (exit)
 # include <unistd.h> //functions like read and close
-# include "../mlx/mlx.h" //MiniliX graphic library
+# include "../minilibx-linux/mlx.h" //MiniliX graphic library
 # include "../libft/libft.h"
 
 //struct to store minilibx image information 
