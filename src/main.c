@@ -3,39 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/19 17:51:51 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/20 18:47:25 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	start_game(char *file, int *map_height)
+void	start_game(char *file)
 {
-	char	**map;
+	t_game	so_long;
+	
+	read_map(&so_long, file);
 
-	map = read_map(file, map_height);
-	if (map == NULL)
-	{
-		ft_printf("Error\nFailed to read map.\n");
-		return ;
-	}
+	//print map
+    unsigned int j = 0;
+    ft_printf("Map size: %d x %d\n", so_long.map->width, so_long.map->height);
+    while (j < so_long.map->height)
+    {
+        ft_printf("%s", so_long.map->grid[j]);
+        j++;  
+    }
+    ft_printf("\n");	
+	
+	//validate the map
+	//check_map(file)
+	
 	//clean up memory after using the map
-	clean_map(map, *map_height);
+	//clean_map(map, *map_height);
 }
 
 int	main(int argc, char **argv)
 {
-	int map_height;
-
 	if (argc != 2)
 	{
 		ft_printf("Error\nInvalid number of arguments.\n");
 		return (1); 
 	}
-	start_game(argv[1], &map_height); // starting the game with the map file
+	start_game(argv[1]); // starting the game with the map file
 	return (0);
 }
 

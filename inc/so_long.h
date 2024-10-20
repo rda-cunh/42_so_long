@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 00:56:22 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/20 22:20:39 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,36 @@
 # include "../libft/libft.h"
 
 //struct to store minilibx image information 
-typedef struct s_data
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}				t_data;
+}				t_img;
 
-void	start_game(char *file, int *map_height);
+//struct to store map info
+typedef struct s_map
+{
+	char			**grid;
+	unsigned int	height;
+	unsigned int	width;
+}				t_map;
 
-char	**read_map(char *file, int *map_height);
-int		get_file_height(char *file);
+//struct to store game info
+typedef struct s_game
+{
+	t_map	*map;
+}				t_game;
 
-void    clean_map(char **map, int map_height);
+
+void	start_game(char *file);
+
+void	read_map(t_game *so_long, char *file);
+int		get_file_height(t_game *so_long, char *file);
+t_map   *create_map(unsigned int width, unsigned int height);
+
+//void	clean_map(char **map, int map_height);
 
 #endif
