@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_game.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/14 19:36:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 23:25:03 by rda-cunh         ###   ########.fr       */
+/*   Created: 2024/10/20 22:29:30 by rda-cunh          #+#    #+#             */
+/*   Updated: 2024/10/20 22:46:28 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-void	clean_map(t_map *map)
+//print map size and map grid
+void	print_map(t_game *so_long)
 {
-	int	i;
+	unsigned int	j;
 
-	i = 0;
-	if (!map)
-		return ;
-	if (!map->grid)
-		return ;
-	while (map->grid[i])
+	j = 0;
+	ft_printf("Map size: %d x %d\n", so_long->map->width, so_long->map->height);
+	while (j < so_long->map->height)
 	{
-		free (map->grid[i]);
-		map->grid[i] = NULL; //set pointer as NULL (avoid double free and increase safety)
-		i++;
+		ft_printf("%s", so_long->map->grid[j]);
+		j++;
 	}
-	free (map->grid);
-	map->grid = NULL; //set pointer as NULL (avoid double free and increase safety)
-	free (map);
-	map = NULL; //set pointer as NULL (avoid double free and increase safety)
+	ft_printf("\n");
 }

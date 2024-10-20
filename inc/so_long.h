@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 22:20:39 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/20 23:17:38 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,11 @@ void	start_game(char *file);
 
 void	read_map(t_game *so_long, char *file);
 int		get_file_height(t_game *so_long, char *file);
-t_map   *create_map(unsigned int width, unsigned int height);
+t_map	*create_map(unsigned int width, unsigned int height);
+
+void	clean_map(t_map *map);
+
+void	print_map(t_game *so_long);
 
 //void	clean_map(char **map, int map_height);
 
