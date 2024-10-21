@@ -54,7 +54,7 @@ t_map	*create_map(unsigned int width, unsigned int height);
 void	clean_map(t_map *map);
 
 void	print_map(t_game *so_long);
-bool	check_file(char *file);
+bool	check_filename(char *file);
 
 //void	clean_map(char **map, int map_height);
 

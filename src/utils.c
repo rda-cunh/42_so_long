@@ -28,7 +28,7 @@ void	print_map(t_game *so_long)
 }
 
 //verifies map filename
-bool	check_file(char *file)
+bool	check_filename(char *file)
 {
 	size_t	len;
 
