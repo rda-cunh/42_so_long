@@ -26,3 +26,14 @@ void	print_map(t_game *so_long)
 	}
 	ft_printf("\n");
 }
+
+//verifies map filename
+bool	check_file(char *file)
+{
+	size_t	len; 
+
+	if (len <= 4 || !ft_strnstr((file + i - 4), ".ber", 4))
+		return (false);
+	else
+		return (true); 
+}

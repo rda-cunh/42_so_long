@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nInvalid number of arguments.\n");
 		return (1); 
 	}
+	check_filename(argv[1]); // check filename and extension; 
 	start_game(argv[1]); // starting the game with the map file
 	return (0);
 }

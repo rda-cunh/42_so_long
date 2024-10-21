@@ -16,8 +16,9 @@
 # include <fcntl.h> //used for file control and opening files (maps)
 # include <stdlib.h> //memory allocation and program termination (exit)
 # include <unistd.h> //functions like read and close
+# include <stdbool.h> //deals with bolean data
 # include "../minilibx-linux/mlx.h" //MiniliX graphic library
-# include "../libft/libft.h"
+# include "../libft/libft.h" //libft
 
 //struct to store minilibx image information 
 typedef struct s_img
