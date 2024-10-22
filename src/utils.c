@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:29:30 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 22:46:28 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/21 22:28:13 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ bool	check_filename(char *file)
 	size_t	len;
 
 	len = ft_strlen(file);
-	if (len <= 4 || !ft_strnstr((file + len - 4), ".ber", 4))
+	if (len <= 4 || !ft_strncmp((file + len - 4), ".ber", 4) != 0)
 		return (false);
 	else
-		return (true); 
+		return (true);
 }

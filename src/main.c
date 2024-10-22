@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 23:26:20 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 01:18:39 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	start_game(char *file)
 
 	read_map(&so_long, file); //map reading and store it as 2D array
 	print_map(&so_long); //prints map size and map grid
-		
+	render_map(&so_long); // render map
+
 	// validate the map
 	// iniatialize mlx (see comented code bellow)
-	// render
 	// player position and moving(how?)
 
 	clean_map(so_long.map); //frees memory allocation from map
@@ -34,11 +34,11 @@ int	main(int argc, char **argv)
 		ft_printf("Error\nInvalid number of arguments.\n");
 		return (1); 
 	}
-	check_filename(argv[1]); // check filename extension;
+	if (check_filename(argv[1])) // check filename extension;
 	{
 		ft_printf("Error\nInvalid filename.\n");
 		return (1); 
-	} 
+	}
 	start_game(argv[1]); // starting the game with the map file
 	return (0);
 }
