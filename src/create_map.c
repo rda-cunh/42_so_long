@@ -27,7 +27,12 @@ t_map   *create_map(unsigned int width, unsigned int height)
         return (NULL);
     }
     map->height = height;
-    map->width = width; 
+    map->width = width;
+    map->players = 0;
+	map->eggs = 0;
+	map->exit = 0;
+	map->player.x = 0;
+	map->player.y = 0; 
     return (map); 
 }
 

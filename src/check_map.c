@@ -12,7 +12,8 @@
 
 #include "../inc/so_long.h"
 
-void    check_line_walls(t_game *so_long)
+//function that verifies the border lines and then border columns
+void    check_walls(t_game *so_long)
 {
     unsigned int i;
 
@@ -24,19 +25,13 @@ void    check_line_walls(t_game *so_long)
             ft_printf("Error\nInvalid Map. There's a wall missing on the first line\n");
             exit(1);
         }
-        else if (so_long->map.grid[i][so_long->map.height - 1] != WATER)
+        else if (so_long->map.grid[i][so_long->map.width - 1] != WATER)
         {
             ft_printf("Error\nInvalid Map. There's a wall missing on the last line\n");
             exit(1);            
         }
         i++;
     }
-}
-
-void    check_collumn_walls(t_game *so_long)
-{
-    unsigned int i;
-
     i = 0; 
     while (i < so_long->map.width)
     {
@@ -45,7 +40,7 @@ void    check_collumn_walls(t_game *so_long)
             ft_printf("Error\nInvalid Map. There's a wall missing on the first collumn\n");
             exit(1);
         }
-        else if (so_long->map.grid[so_long->map.width - 1][i] != WATER)
+        else if (so_long->map.grid[so_long->map.height - 1][i] != WATER)
         {
             ft_printf("Error\nInvalid Map. There's a wall missing on the last collumn\n");
             exit(1);            
@@ -77,9 +72,9 @@ void    count_map_objects(t_game *so_long)
                 so_long->map.player.y = y; 
             }
             else if (so_long->map.grid[y][x] == EGG)
-                so_long->map.eggs++; //add to structure
+                so_long->map.eggs++;
             else if (so_long->map.grid[y][x] == EXIT)
-                so_long->map.exit++; //add to structure
+                so_long->map.exit++;
             x++;    
         }
         y++;
@@ -108,8 +103,7 @@ void    verify_map_objects(t_game *so_long)
 
 void    check_map(t_game *so_long)
 {
-    check_line_walls(so_long);
-    check_collumn_walls(so_long);
+    check_walls(so_long);
     count_map_objects(so_long);
     verify_map_objects(so_long);
 }

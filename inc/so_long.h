@@ -43,10 +43,17 @@ typedef struct s_graphics
 	void	*win;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
+	int		bits_per_pixel; //evaluate if i need this
+	int		line_length; //evaluate if i need this
+	int		endian; //evaluate if i need this
 }				t_graphics;
+
+//store player position
+typedef struct s_player
+{
+	unsigned int	x;
+	unsigned int	y;
+}				t_player; 
 
 //struct to store map info
 typedef struct s_map
@@ -55,8 +62,7 @@ typedef struct s_map
 	unsigned int	height;
 	unsigned int	width;
 	unsigned int	players;
-	unsigned int	player.x;
-	unsigned int	player.y;
+	t_player		player;
 	unsigned int	eggs;
 	unsigned int	exit;
 }				t_map;
@@ -76,8 +82,7 @@ int		get_file_height(t_game *so_long, char *file);
 t_map	*create_map(unsigned int width, unsigned int height);
 
 void    check_map(t_game *so_long);
-void	check_line_walls(so_long);
-void	check_collumn_walls(so_long);
+void    check_walls(t_game *so_long);
 void	count_map_objects(so_long);
 void	verify_map_objects(so_long);
 
@@ -88,7 +93,5 @@ void	clean_map(t_map *map);
 
 void	print_map(t_game *so_long);
 bool	check_filename(char *file);
-
-//void	clean_map(char **map, int map_height);
 
 #endif
