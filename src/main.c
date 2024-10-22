@@ -18,12 +18,9 @@ void	start_game(char *file)
 
 	read_map(&so_long, file); //map reading and store it as 2D array
 	print_map(&so_long); //prints map size and map grid
-	render_map(&so_long); // render map
-
-	// validate the map
-	// iniatialize mlx (see comented code bellow)
+	check_map(&so_long); //check map walls and object count
+	render_map(&so_long); // initialize mlx and render map
 	// player position and moving(how?)
-
 	clean_map(so_long.map); //frees memory allocation from map
 }
 

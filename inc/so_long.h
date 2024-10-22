@@ -29,6 +29,7 @@
 
 //sprites info and location
 # define SIZE_TL	64
+# define TILES		"01CEP"
 # define GRASS_TL	"assets/sprites/0.xpm"
 # define WATER_TL	"assets/sprites/1.xpm"
 # define EGG_TL		"assets/sprites/c.xpm"
@@ -53,6 +54,11 @@ typedef struct s_map
 	char			**grid;
 	unsigned int	height;
 	unsigned int	width;
+	unsigned int	players;
+	unsigned int	player.x;
+	unsigned int	player.y;
+	unsigned int	eggs;
+	unsigned int	exit;
 }				t_map;
 
 //struct to store game info
@@ -69,7 +75,13 @@ void	read_map(t_game *so_long, char *file);
 int		get_file_height(t_game *so_long, char *file);
 t_map	*create_map(unsigned int width, unsigned int height);
 
-void	launch_mlx(t_game *game);
+void    check_map(t_game *so_long);
+void	check_line_walls(so_long);
+void	check_collumn_walls(so_long);
+void	count_map_objects(so_long);
+void	verify_map_objects(so_long);
+
+void    launch_mlx(t_game *game);
 void	render_map(t_game *game);
 
 void	clean_map(t_map *map);
