@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:29:30 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/21 22:28:13 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:35:18 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,12 @@ bool	check_filename(char *file)
 		return (false);
 	else
 		return (true);
+}
+
+//exit functior: prints message and cleans map
+int	exit_error(t_game *so_long, char *msg)
+{
+	clean_game(so_long);
+	ft_printf("%s", msg);
+	exit (EXIT_FAILURE);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 01:18:03 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:35:12 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,18 @@ t_map	*create_map(unsigned int width, unsigned int height);
 
 void    check_map(t_game *so_long);
 void    check_walls(t_game *so_long);
-void	count_map_objects(so_long);
-void	verify_map_objects(so_long);
+void    count_map_objects(t_game *so_long);
+void    verify_map_objects(t_game *so_long);
 
 void    launch_mlx(t_game *game);
 void	render_map(t_game *game);
 
 void	clean_map(t_map *map);
+void	clean_game(t_game *so_long);
+
 
 void	print_map(t_game *so_long);
 bool	check_filename(char *file);
+int		exit_error(t_game *so_long, char *msg);
 
 #endif

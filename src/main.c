@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 01:18:39 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:38:00 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	start_game(char *file)
 	read_map(&so_long, file); //map reading and store it as 2D array
 	print_map(&so_long); //prints map size and map grid
 	check_map(&so_long); //check map walls and object count
-	render_map(&so_long); // initialize mlx and render map
+//	render_map(&so_long); // initialize mlx and render map
 	// player position and moving(how?)
 	clean_map(so_long.map); //frees memory allocation from map
 }
@@ -27,15 +27,9 @@ void	start_game(char *file)
 int	main(int argc, char **argv)
 {
 	if (argc != 2)
-	{
-		ft_printf("Error\nInvalid number of arguments.\n");
-		return (1); 
-	}
+		exit_error(NULL, "Error\nInvalid number of arguments.\n");
 	if (check_filename(argv[1])) // check filename extension;
-	{
-		ft_printf("Error\nInvalid filename.\n");
-		return (1); 
-	}
+		exit_error(NULL, "Error\nInvalid filename.\n");
 	start_game(argv[1]); // starting the game with the map file
 	return (0);
 }

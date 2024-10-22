@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 22:14:13 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:52:38 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,11 @@ int	get_file_height(t_game *so_long, char *file)
 	int		fd;
 	int		height;
 	char	*line;
-    (void)  so_long; //when i created the exit game error function I wnat to sent this information to that funtion
 
 	height = 0;
     fd = open(file, O_RDONLY);
     if (fd < 0)
-    {
-        //to replace by the exit function
-        ft_printf("Error\nCould not open file.\n");
-        return (-1);
-    }
+        exit_error(so_long, "Error\nCould not open file.\n");
     while ((line = get_next_line(fd)))
     {
         height++;
@@ -71,26 +66,19 @@ void	read_map(t_game *so_long, char *file)
 	i = 0;
     so_long->map = create_map(0, get_file_height(so_long, file)); 
     if (!so_long->map)
-    {
-        ft_printf("Error\nCould not read map.\n");
-        return ;        
-    }
+        exit_error(so_long, "Error\nCould not read map.\n");
     fd = open(file, O_RDONLY);
     if (fd < 0)
-    {
-        ft_printf("Error\nCould not open file.\n");
-        return ;
-    }
+        exit_error(so_long, "Error\nCould not open file.\n");
 
-    // Read each line of the file and store in array
+    // Read each line of the file and store in the array
     while (i < so_long->map->height)
     {
         line = get_next_line(fd);
         if (!line)
         {
-            ft_printf("Error\nCould not read map.\n");
-            close (fd); 
-            return ;            
+            close (fd); //check if this is necessary or if i can deal with it within the exit_error function
+            exit_error(so_long, "Error\nCould not read map.\n");      
         }
         so_long->map->grid[i] = ft_strdup(line);
         if (i == 0) //setting width based on the first line

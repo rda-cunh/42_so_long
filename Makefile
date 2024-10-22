@@ -1,7 +1,7 @@
 NAME = so_long
 
 SRC_DIR = src
-SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/create_map.c $(SRC_DIR)/exit_game.c	$(SRC_DIR)/render_map.c	$(SRC_DIR)/utils.c		 
+SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/create_map.c $(SRC_DIR)/exit_game.c	$(SRC_DIR)/check_map.c $(SRC_DIR)/utils.c #$(SRC_DIR)/render_map.c		 
 OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I/usr/include -Imlx

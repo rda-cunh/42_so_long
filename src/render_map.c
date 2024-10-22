@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 00:02:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 01:26:30 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:55:04 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,10 @@ void    launch_mlx(t_game *game)
 {
     game->display.mlx = mlx_init();
     if (!game->display.mlx)
-    {
-        ft_printf("Error\nFailed to initialize MinilibX\n");
-        exit (1);
-    }
+        exit_error(game, "Error\nFailed to initialize MinilibX\n");
     game->display.win = mlx_new_window(game->display.mlx, game->map->width * SIZE_TL, game->map->height * SIZE_TL, "So Long");
     if (!game->display.win)
-    {
-        ft_printf("Error\nFailed to create window.\n");
-        exit (1); 
-    }
+        exit_error(game, "Error\nFailed to create window.\n");
 }
 
 void    render_map(t_game *game)

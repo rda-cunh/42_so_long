@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:36:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/20 23:25:03 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:38:37 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,13 @@ void	clean_map(t_map *map)
 	map->grid = NULL; //set pointer as NULL (avoid double free and increase safety)
 	free (map);
 	map = NULL; //set pointer as NULL (avoid double free and increase safety)
+}
+
+void	clean_game(t_game *so_long)
+{
+	if (!so_long)
+		return ;
+	if (so_long->map)
+		clean_map(so_long->map); 
+	//see what else must be set here, like cleaning sprites, mlx, mlx window, etc.
 }

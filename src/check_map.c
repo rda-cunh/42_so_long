@@ -3,48 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/21 23:59:18 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/22 19:47:11 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-//function that verifies the border lines and then border columns
+//function that verifies the border columns and then border lines
 void    check_walls(t_game *so_long)
 {
     unsigned int i;
 
     i = 0; 
-    while (i < so_long->map.height)
+    while (i < so_long->map->height)
     {
-        if (so_long->map.grid[i][0] != WATER)
-        {
-            ft_printf("Error\nInvalid Map. There's a wall missing on the first line\n");
-            exit(1);
-        }
-        else if (so_long->map.grid[i][so_long->map.width - 1] != WATER)
-        {
-            ft_printf("Error\nInvalid Map. There's a wall missing on the last line\n");
-            exit(1);            
-        }
+        if (so_long->map->grid[i][0] != WATER)
+            exit_error(so_long, "Error\nInvalid Map. There's a wall missing on the first column\n");
+        else if (so_long->map->grid[i][so_long->map->width - 1] != WATER)
+            exit_error(so_long, "Error\nInvalid Map. There's a wall missing on the last column\n");
         i++;
     }
     i = 0; 
-    while (i < so_long->map.width)
+    while (i < so_long->map->width)
     {
-        if (so_long->map.grid[0][i] != WATER)
-        {
-            ft_printf("Error\nInvalid Map. There's a wall missing on the first collumn\n");
-            exit(1);
-        }
-        else if (so_long->map.grid[so_long->map.height - 1][i] != WATER)
-        {
-            ft_printf("Error\nInvalid Map. There's a wall missing on the last collumn\n");
-            exit(1);            
-        }
+        if (so_long->map->grid[0][i] != WATER)
+            exit_error(so_long, "Error\nInvalid Map. There's a wall missing on the first line\n");
+        else if (so_long->map->grid[so_long->map->height - 1][i] != WATER)
+            exit_error(so_long, "Error\nInvalid Map. There's a wall missing on the last line\n");
         i++;
     }
 }
@@ -55,27 +43,24 @@ void    count_map_objects(t_game *so_long)
     unsigned int    y;
 
     y = 0; 
-    while (y < so_long->map.height)
+    while (y < so_long->map->height)
     {
         x = 0; 
-        while (x < so_long->map.width)
+        while (x < so_long->map->width)
         {
-            if (!ft_strchr(TILES, so_long->map.grid[y][x]))
+            if (!ft_strchr(TILES, so_long->map->grid[y][x]))
+                exit_error(so_long, "Error\nInvalid Map. There's a map object missing\n");
+            else if (so_long->map->grid[y][x] == PLAYER)
             {
-                ft_printf("Error\nInvalid Map. There's a map object missing\n");
-                exit(1);
+                so_long->map->players++; 
+                so_long->map->player.x = x; 
+                so_long->map->player.y = y; 
             }
-            else if (so_long->map.grid[y][x] == PLAYER)
-            {
-                so_long->map.players++; 
-                so_long->map.player.x = x; 
-                so_long->map.player.y = y; 
-            }
-            else if (so_long->map.grid[y][x] == EGG)
-                so_long->map.eggs++;
-            else if (so_long->map.grid[y][x] == EXIT)
-                so_long->map.exit++;
-            x++;    
+            else if (so_long->map->grid[y][x] == EGG)
+                so_long->map->eggs++;
+            else if (so_long->map->grid[y][x] == EXIT)
+                so_long->map->exit++;
+            x++;
         }
         y++;
     }
@@ -83,23 +68,13 @@ void    count_map_objects(t_game *so_long)
 
 void    verify_map_objects(t_game *so_long)
 {
-    if (so_long->map.eggs == 0)
-    {
-        ft_printf("Error\nInvalid Map. There's no eggs to catch.\n");
-        exit(1);
-    }
-    else if (so_long->map.exit == 0) //check rules if it is posible to have more than 1 exit (?)
-    {
-        ft_printf("Error\nInvalid Map. There's no exit.\n");
-        exit(1);
-    }
-    else if (so_long->map.players != 1)
-    {
-        ft_printf("Error\nInvalid Map. I'm only a sigle player game because my programer is lazy.\n");
-        exit(1);
-    }
+    if (so_long->map->eggs == 0)
+        exit_error(so_long, "Error\nInvalid Map. There's no eggs to catch.\n");
+    else if (so_long->map->exit != 1)
+        exit_error(so_long, "Error\nInvalid Map. There's no exit or more than one exit.\n");
+    else if (so_long->map->players != 1)
+        exit_error(so_long, "Error\nInvalid Map. I'm only a sigle player game because my programer is lazy.\n");
 }
-
 
 void    check_map(t_game *so_long)
 {
