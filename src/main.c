@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/23 01:16:17 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/23 11:17:11 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	start_game(char *file)
 	launch_mlx(&so_long);
 	load_images(&so_long);
 	render_map(&so_long); // initialize mlx and render map
-	// start the hooks for key pressing
+	mlx_key_hook(so_long->display.win, key_hook, NULL);
+//	mlx_hook(so_long->display.img, 17, 0, mlx_win, NULL);  // 17 is the event for window close
+	mlx_loop(so_long.display.mlx);
 	clean_game(&so_long); //frees memory allocation from map
 }
 
