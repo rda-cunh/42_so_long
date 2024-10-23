@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 19:35:12 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/23 01:28:23 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@
 # define EXIT_TL	"assets/sprites/e.xpm"
 # define PLAYER_TL	"assets/sprites/p.xpm"
 
+//store sprite info
+typedef struct s_sprite
+{
+	void	*img;
+	int		height;
+	int		width;
+}			t_sprite;
+
 //struct to store minilibx information 
 typedef struct s_graphics
 {
@@ -43,17 +51,14 @@ typedef struct s_graphics
 	void	*win;
 	void	*img;
 	char	*addr;
-	int		bits_per_pixel; //evaluate if i need this
-	int		line_length; //evaluate if i need this
-	int		endian; //evaluate if i need this
 }				t_graphics;
 
 //store player position
-typedef struct s_player
+typedef struct s_point
 {
 	unsigned int	x;
 	unsigned int	y;
-}				t_player; 
+}				t_point;
 
 //struct to store map info
 typedef struct s_map
@@ -62,7 +67,7 @@ typedef struct s_map
 	unsigned int	height;
 	unsigned int	width;
 	unsigned int	players;
-	t_player		player;
+	t_point			player;
 	unsigned int	eggs;
 	unsigned int	exit;
 }				t_map;
@@ -72,6 +77,13 @@ typedef struct s_game
 {
 	t_map		*map;
 	t_graphics	display;
+	t_point		curr;
+	t_point		next;
+	t_sprite	grass;
+	t_sprite	water;
+	t_sprite	egg;
+	t_sprite	exit;
+	t_sprite	player;
 }				t_game;
 
 
@@ -81,17 +93,17 @@ void	read_map(t_game *so_long, char *file);
 int		get_file_height(t_game *so_long, char *file);
 t_map	*create_map(unsigned int width, unsigned int height);
 
-void    check_map(t_game *so_long);
-void    check_walls(t_game *so_long);
-void    count_map_objects(t_game *so_long);
-void    verify_map_objects(t_game *so_long);
+void	check_map(t_game *so_long);
+void	check_walls(t_game *so_long);
+void	count_map_objects(t_game *so_long);
+void	verify_map_objects(t_game *so_long);
 
-void    launch_mlx(t_game *game);
+void	launch_mlx(t_game *game);
+void	load_images(t_game *game);
 void	render_map(t_game *game);
 
 void	clean_map(t_map *map);
 void	clean_game(t_game *so_long);
-
 
 void	print_map(t_game *so_long);
 bool	check_filename(char *file);

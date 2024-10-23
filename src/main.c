@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:05:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 19:38:00 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/23 01:16:17 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ void	start_game(char *file)
 	read_map(&so_long, file); //map reading and store it as 2D array
 	print_map(&so_long); //prints map size and map grid
 	check_map(&so_long); //check map walls and object count
-//	render_map(&so_long); // initialize mlx and render map
-	// player position and moving(how?)
-	clean_map(so_long.map); //frees memory allocation from map
+	launch_mlx(&so_long);
+	load_images(&so_long);
+	render_map(&so_long); // initialize mlx and render map
+	// start the hooks for key pressing
+	clean_game(&so_long); //frees memory allocation from map
 }
 
 int	main(int argc, char **argv)

@@ -1,7 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
+#    Updated: 2024/10/22 23:59:39 by rda-cunh         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = so_long
 
 SRC_DIR = src
-SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/create_map.c $(SRC_DIR)/exit_game.c	$(SRC_DIR)/check_map.c $(SRC_DIR)/utils.c #$(SRC_DIR)/render_map.c		 
+SRCS = $(SRC_DIR)/main.c $(SRC_DIR)/create_map.c $(SRC_DIR)/exit_game.c	\
+		$(SRC_DIR)/check_map.c $(SRC_DIR)/render_map.c $(SRC_DIR)/utils.c		 
 OBJS = $(SRCS:.c=.o)
 
 INCLUDES = -I/usr/include -Imlx
