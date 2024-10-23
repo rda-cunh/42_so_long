@@ -35,6 +35,12 @@ void    load_images(t_game *game)
         exit_error(game, "Error\nFailed to load images.\n");
 }
 
+void    render_after_move(t_game  *game)
+{
+    //funtion that re-render the map after move
+}
+
+
 void    render_map(t_game *game)
 {
     unsigned int    x;

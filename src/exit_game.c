@@ -41,3 +41,9 @@ void	clean_game(t_game *so_long)
 		clean_map(so_long->map); 
 	//see what else must be set here, like cleaning sprites, mlx, mlx window, etc.
 }
+
+int	end_game(t_game *so_long)
+{
+	clean_game(so_long);
+	exit(EXIT_SUCCESS);
+}
