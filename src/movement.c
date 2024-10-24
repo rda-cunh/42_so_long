@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 02:31:03 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:55:24 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,23 @@ void	move_player(t_game *so_long)
 				ft_printf("All eggs colected!\n");
 		}
 	
+		//check if the player is going for the exit
+		if (next_tile == EXIT)
+		{
+			//check if all egs are colected
+			if (so_long->map->eggs == 0)
+			{
+				ft_printf("You reached the exit after collecting all the eggs!\n");
+				end_game(so_long);
+				return ;
+			}
+			else
+			{
+				ft_printf("You need to collect all the eggs before exiting!\n");
+				return ; 
+			}
+		}
+
 		//update the player's current position in the map
 		so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS; //set old position to GRASS
 		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER; //set new position to PLAYER
