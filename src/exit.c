@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:36:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 01:26:47 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:10:40 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,16 @@ void	clean_map(t_map *map)
 
 void	clean_sprites(t_game *so_long)
 {
-	if (so_long->grass)
-		mlx_destroy_image(so_long->display.mlx, so_long->grass);
-	if (so_long->water)
-		mlx_destroy_image(so_long->display.mlx, so_long->water);
-	if (so_long->egg)
-		mlx_destroy_image(so_long->display.mlx, so_long->egg);
-	if (so_long->exit)
-		mlx_destroy_image(so_long->display.mlx, so_long->exit);
-	if (so_long->player)
-		mlx_destroy_image(so_long->display.mlx, so_long->player);
+	if (so_long->grass.img)
+		mlx_destroy_image(so_long->display.mlx, so_long->grass.img);
+	if (so_long->water.img)
+		mlx_destroy_image(so_long->display.mlx, so_long->water.img);
+	if (so_long->egg.img)
+		mlx_destroy_image(so_long->display.mlx, so_long->egg.img);
+	if (so_long->exit.img)
+		mlx_destroy_image(so_long->display.mlx, so_long->exit.img);
+	if (so_long->player.img)
+		mlx_destroy_image(so_long->display.mlx, so_long->player.img);
 }
 
 void	clean_game(t_game *so_long)
@@ -50,7 +50,7 @@ void	clean_game(t_game *so_long)
 		return ;
 	if (so_long->map)
 		clean_map(so_long->map);
-	clean sprites(so_long);
+	clean_sprites(so_long);
 	if (so_long->display.win)
 		mlx_destroy_window(so_long->display.mlx, so_long->display.win);
 	if (so_long->display.mlx)

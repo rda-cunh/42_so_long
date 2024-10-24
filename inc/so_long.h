@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 01:51:45 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:58:52 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		handle_keypress(int keycode, t_game *so_long);
 
 //exit.c
 void	clean_map(t_map *map);
-void	clean_sprites(t_game *so_long)
+void	clean_sprites(t_game *so_long);
 void	clean_game(t_game *so_long);
 int		exit_error(t_game *so_long, char *msg);
 int		end_game(t_game *so_long);
