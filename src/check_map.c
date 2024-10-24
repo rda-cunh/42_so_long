@@ -3,16 +3,47 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 02:07:00 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:33:33 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
 //shape verification (rectangle) is missing 
+void    check_shape(t_game *so_long)
+{
+    unsigned int i; 
+
+    i = 0; 
+    while(i < so_long->map.height)
+    {
+        if (ft_srtlen(so_long->map->grid[i]) != so_long->map.height)
+            return (0);
+        i++;
+    }
+    return (1); 
+}
+
+
+int	map_retangular(t_map map)
+{
+	size_t	columns;
+	int		i;
+
+	i = 0;
+	columns = ft_strlen(map.data[i]);
+	while (map.data[i])
+	{
+		if (ft_strlen(map.data[i]) != columns)
+			return (0);
+		i++;
+	}
+	map.cols = columns;
+	return (1);
+}
 
 
 //function that verifies the border columns and then border lines
@@ -83,7 +114,8 @@ void    verify_map_objects(t_game *so_long)
 
 void	check_map(t_game *so_long)
 {
-	check_walls(so_long);
+	check_shape(so_long); 
+    check_walls(so_long);
 	count_map_objects(so_long);
 	verify_map_objects(so_long);
 }
