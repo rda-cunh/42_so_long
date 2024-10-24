@@ -6,7 +6,7 @@
 #    By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/10/23 23:32:09 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/10/24 23:31:42 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
-all: $(NAME)
-
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+
+all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)

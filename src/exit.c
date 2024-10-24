@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:36:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 19:10:40 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 23:31:49 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	clean_game(t_game *so_long)
 		mlx_destroy_window(so_long->display.mlx, so_long->display.win);
 	if (so_long->display.mlx)
 		mlx_destroy_display(so_long->display.mlx);
-	free(so_long->display.mlx);  
+	free(so_long->display.mlx);
 }
 
 //print error message and clean up
