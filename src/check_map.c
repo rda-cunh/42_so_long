@@ -6,19 +6,19 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/23 01:33:05 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 02:07:00 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-
 //shape verification (rectangle) is missing 
 
+
 //function that verifies the border columns and then border lines
-void    check_walls(t_game *so_long)
+void	check_walls(t_game *so_long)
 {
-    unsigned int i;
+	unsigned int	i;
 
     i = 0; 
     while (i < so_long->map->height)
@@ -40,10 +40,10 @@ void    check_walls(t_game *so_long)
     }
 }
 
-void    count_map_objects(t_game *so_long)
+void	count_map_objects(t_game *so_long)
 {
-    unsigned int    x;
-    unsigned int    y;
+	unsigned int	x;
+	unsigned int	y;
 
     y = 0; 
     while (y < so_long->map->height)
@@ -57,7 +57,9 @@ void    count_map_objects(t_game *so_long)
             {
                 so_long->map->players++; 
                 so_long->map->player.x = x; 
-                so_long->map->player.y = y; 
+                so_long->map->player.y = y;
+                so_long->curr = (t_point){x, y};
+                so_long->next = so_long->curr; 
             }
             else if (so_long->map->grid[y][x] == EGG)
                 so_long->map->eggs++;
@@ -79,9 +81,9 @@ void    verify_map_objects(t_game *so_long)
         exit_error(so_long, "Error\nInvalid Map. I'm only a sigle player game because my programer is lazy.\n");
 }
 
-void    check_map(t_game *so_long)
+void	check_map(t_game *so_long)
 {
-    check_walls(so_long);
-    count_map_objects(so_long);
-    verify_map_objects(so_long);
+	check_walls(so_long);
+	count_map_objects(so_long);
+	verify_map_objects(so_long);
 }

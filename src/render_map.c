@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 00:02:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/23 01:12:27 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 00:46:10 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,6 @@ void    load_images(t_game *game)
         exit_error(game, "Error\nFailed to load images.\n");
 }
 
-void    render_after_move(t_game  *game)
-{
-    //funtion that re-render the map after move
-}
-
-
 void    render_map(t_game *game)
 {
     unsigned int    x;
@@ -66,7 +60,4 @@ void    render_map(t_game *game)
         }
         y++;
     }
-
-    //keep the window open to hanle events key pressing
-    mlx_loop(game->display.mlx); 
 }

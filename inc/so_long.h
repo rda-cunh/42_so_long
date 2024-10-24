@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/23 01:28:23 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 01:51:45 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <fcntl.h> //used for file control and opening files (maps)
 # include <stdlib.h> //memory allocation and program termination (exit)
 # include <unistd.h> //functions like read and close
-# include <stdbool.h> //deals with bolean data
 # include "../minilibx-linux/mlx.h" //MiniliX graphic library
 # include "../libft/libft.h" //libft
 
@@ -36,16 +35,16 @@
 # define EXIT_TL	"assets/sprites/e.xpm"
 # define PLAYER_TL	"assets/sprites/p.xpm"
 
-//keys 
-# define KEY_ESC 	53
-# define KEY_W		13
-# define KEY_A 		0
-# define KEY_S 		1
-# define KEY_D 		2
-# define KEY_UP 	126
-# define KEY_DOWN 	125
-# define KEY_LEFT 	123
-# define KEY_RIGHT	124
+//pressed keys 
+#define KEY_ESC		65307
+#define KEY_W		119
+#define KEY_A		97
+#define KEY_S		115
+#define KEY_D		100
+#define KEY_UP		65362
+#define KEY_DOWN	65364
+#define KEY_LEFT	65361
+#define KEY_RIGHT	65363
 
 //store sprite info
 typedef struct s_sprite
@@ -81,6 +80,7 @@ typedef struct s_map
 	t_point			player;
 	unsigned int	eggs;
 	unsigned int	exit;
+	unsigned int	moves;
 }				t_map;
 
 //struct to store game info
@@ -97,27 +97,40 @@ typedef struct s_game
 	t_sprite	player;
 }				t_game;
 
-
+//main.c
 void	start_game(char *file);
 
-void	read_map(t_game *so_long, char *file);
-int		get_file_height(t_game *so_long, char *file);
+//create_map.c
 t_map	*create_map(unsigned int width, unsigned int height);
+int		get_file_height(t_game *so_long, char *file);
+void	read_map(t_game *so_long, char *file);
 
-void	check_map(t_game *so_long);
+//check_map.c
 void	check_walls(t_game *so_long);
 void	count_map_objects(t_game *so_long);
 void	verify_map_objects(t_game *so_long);
+void	check_map(t_game *so_long);
 
+//render_map.c
 void	launch_mlx(t_game *game);
 void	load_images(t_game *game);
 void	render_map(t_game *game);
 
+//movement.c
+int		check_move(t_game *so_long);
+void	move_player(t_game *so_long);
+int		handle_keypress(int keycode, t_game *so_long);
+
+//exit.c
 void	clean_map(t_map *map);
 void	clean_game(t_game *so_long);
-
-void	print_map(t_game *so_long);
-bool	check_filename(char *file);
 int		exit_error(t_game *so_long, char *msg);
+int		end_game(t_game *so_long);
+
+//utils.c
+int		check_filename(char *file);
+int		is_same_point(t_point a, t_point b);
+char	get_object(t_game *so_long, t_point point);
+void	print_map(t_game *so_long);
 
 #endif

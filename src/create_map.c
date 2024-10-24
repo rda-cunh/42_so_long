@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/22 19:52:38 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 01:09:08 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ t_map   *create_map(unsigned int width, unsigned int height)
 	map->eggs = 0;
 	map->exit = 0;
 	map->player.x = 0;
-	map->player.y = 0; 
+	map->player.y = 0;
+    map->moves = 0;
     return (map); 
 }
 
