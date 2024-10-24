@@ -123,6 +123,7 @@ int		handle_keypress(int keycode, t_game *so_long);
 
 //exit.c
 void	clean_map(t_map *map);
+void	clean_sprites(t_game *so_long)
 void	clean_game(t_game *so_long);
 int		exit_error(t_game *so_long, char *msg);
 int		end_game(t_game *so_long);
