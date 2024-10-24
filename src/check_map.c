@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 19:33:33 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 19:36:18 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,31 +20,12 @@ void    check_shape(t_game *so_long)
     i = 0; 
     while(i < so_long->map.height)
     {
-        if (ft_srtlen(so_long->map->grid[i]) != so_long->map.height)
+        if (ft_srtlen(so_long->map->grid[i]) != so_long->map->width)
             return (0);
         i++;
     }
     return (1); 
 }
-
-
-int	map_retangular(t_map map)
-{
-	size_t	columns;
-	int		i;
-
-	i = 0;
-	columns = ft_strlen(map.data[i]);
-	while (map.data[i])
-	{
-		if (ft_strlen(map.data[i]) != columns)
-			return (0);
-		i++;
-	}
-	map.cols = columns;
-	return (1);
-}
-
 
 //function that verifies the border columns and then border lines
 void	check_walls(t_game *so_long)
