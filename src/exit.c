@@ -23,11 +23,25 @@ void	clean_map(t_map *map)
 		return ;
 	while (map->grid[i])
 	{
-		free (map->grid[i]);
+		free(map->grid[i]);
 		i++;
 	}
-	free (map->grid);
-	free (map);
+	free(map->grid);
+	free(map);
+}
+
+void	clean_sprites(t_game *so_long)
+{
+	if (so_long->grass)
+		mlx_destroy_image(so_long->display.mlx, so_long->grass);
+	if (so_long->water)
+		mlx_destroy_image(so_long->display.mlx, so_long->water);
+	if (so_long->egg)
+		mlx_destroy_image(so_long->display.mlx, so_long->egg);
+	if (so_long->exit)
+		mlx_destroy_image(so_long->display.mlx, so_long->exit);
+	if (so_long->player)
+		mlx_destroy_image(so_long->display.mlx, so_long->player);
 }
 
 void	clean_game(t_game *so_long)
@@ -35,18 +49,24 @@ void	clean_game(t_game *so_long)
 	if (!so_long)
 		return ;
 	if (so_long->map)
-		clean_map(so_long->map); 
-	//see what else must be set here, like cleaning sprites, mlx, mlx window, etc.
+		clean_map(so_long->map);
+	clean sprites(so_long);
+	if (so_long->display.win)
+		mlx_destroy_window(so_long->display.mlx, so_long->display.win);
+	if (so_long->display.mlx)
+		mlx_destroy_display(so_long->display.mlx);
+	free(so_long->display.mlx);  
 }
 
-//exit functior: prints message and cleans map
+//print error message and clean up
 int	exit_error(t_game *so_long, char *msg)
 {
 	clean_game(so_long);
 	ft_printf("%s", msg);
-	exit (EXIT_FAILURE);
+	exit(EXIT_FAILURE);
 }
 
+//clean up and exit the game succesfully
 int	end_game(t_game *so_long)
 {
 	clean_game(so_long);
