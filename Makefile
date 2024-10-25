@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+         #
+#    By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/10/25 17:42:46 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/10/25 23:16:39 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MLX_LIB = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -L/usr/lib/X11 -lXext -lX11
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
 all: $(NAME)
