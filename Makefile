@@ -6,7 +6,7 @@
 #    By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/10/25 00:00:40 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/10/25 14:55:00 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = $(SRC_DIR)/check_map.c $(SRC_DIR)/check_map1.c $(SRC_DIR)/create_map.c \
 		$(SRC_DIR)/render_map.c $(SRC_DIR)/utils.c		 
 OBJS = $(SRCS:.c=.o)
 
-INCLUDES = -I/usr/include -Imlx
+INCLUDES = -I/usr/include -Imlx -I$(LIBFT_DIR) -I$(MLX_DIR)
 
 LIBFT_DIR = ./libft
 LIBFT = ./libft/libft.a
@@ -31,9 +31,6 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
-
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
@@ -44,6 +41,9 @@ $(LIBFT):
 
 $(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
 
 clean:
 	$(MAKE) clean -C $(LIBFT_DIR)
