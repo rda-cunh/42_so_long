@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 11:52:11 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:39:26 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,14 +106,14 @@ int		get_file_height(t_game *so_long, char *file);
 void	read_map(t_game *so_long, char *file);
 
 //check_map.c
-void	check_map(t_game *so_long);
-
-//check_map1.c
 int		check_shape(t_game *so_long);
 void	check_walls(t_game *so_long);
 void	count_map_objects(t_game *so_long);
 void	verify_map_objects(t_game *so_long);
+
+//check_map1.c
 void	check_paths(t_game *so_long);
+void	check_map(t_game *so_long);
 
 //render_map.c
 void	launch_mlx(t_game *game);

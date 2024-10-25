@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 00:02:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 23:50:32 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:00:17 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,28 @@ void	load_images(t_game *game)
 		exit_error(game, "Error\nFailed to load images.\n");
 }
 
+//helper function for for render_map function above (norm u25)
+static void	render_tile(t_game *game, unsigned int x, unsigned int y)
+{
+	void	*img;
+
+	img = NULL;
+	if (game->map->grid[y][x] == GRASS)
+		img = game->grass.img;
+	else if (game->map->grid[y][x] == WATER)
+		img = game->water.img;
+	else if (game->map->grid[y][x] == EGG)
+		img = game->egg.img;
+	else if (game->map->grid[y][x] == EXIT)
+		img = game->exit.img;
+	else if (game->map->grid[y][x] == PLAYER)
+		img = game->player.img;
+	if (img)
+		mlx_put_image_to_window(game->display.mlx, game->display.win, \
+		img, x * SIZE_TL, y * SIZE_TL);
+}
+
+//function to render the map
 void	render_map(t_game *game)
 {
 	unsigned int	x;
@@ -52,21 +74,7 @@ void	render_map(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			if (game->map->grid[y][x] == GRASS)
-				mlx_put_image_to_window(game->display.mlx, \
-				game->display.win, game->grass.img, x * SIZE_TL, y * SIZE_TL);
-			else if (game->map->grid[y][x] == WATER)
-				mlx_put_image_to_window(game->display.mlx, \
-				game->display.win, game->water.img, x * SIZE_TL, y * SIZE_TL);
-			else if (game->map->grid[y][x] == EGG)
-				mlx_put_image_to_window(game->display.mlx, \
-				game->display.win, game->egg.img, x * SIZE_TL, y * SIZE_TL);
-			else if (game->map->grid[y][x] == EXIT)
-				mlx_put_image_to_window(game->display.mlx, \
-				game->display.win, game->exit.img, x * SIZE_TL, y * SIZE_TL);
-			else if (game->map->grid[y][x] == PLAYER)
-				mlx_put_image_to_window(game->display.mlx, \
-				game->display.win, game->player.img, x * SIZE_TL, y * SIZE_TL);
+			render_tile(game, x, y);
 			x++;
 		}
 		y++;

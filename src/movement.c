@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 00:26:47 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:55:41 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,18 @@ int	check_move(t_game *so_long)
 {
 	return (!is_same_point(so_long->curr, so_long->next) \
 		&& get_object(so_long, so_long->next) != WATER);
+}
+
+//helper funtion for the move_player funtion above and keep it under 25 lines
+static void	handle_exit(t_game *so_long)
+{
+	if (so_long->map->eggs == 0)
+	{
+		ft_printf("You reached the exit after collecting all eggs!\n");
+		end_game(so_long);
+	}
+	else
+		ft_printf("You need to collect all the eggs before exiting!\n");
 }
 
 //move the player
@@ -34,19 +46,7 @@ void	move_player(t_game *so_long)
 				ft_printf("All eggs colected!\n");
 		}
 		if (next_tile == EXIT)
-		{
-			if (so_long->map->eggs == 0)
-			{
-				ft_printf("You reached the exit after collecting all eggs!\n");
-				end_game(so_long);
-				return ;
-			}
-			else
-			{
-				ft_printf("You need to collect all the eggs before exiting!\n");
-				return ;
-			}
-		}
+			return (handle_exit(so_long));
 		so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS;
 		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER;
 		so_long->curr = so_long->next;

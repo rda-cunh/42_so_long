@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 22:29:30 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 01:42:22 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:07:47 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,32 +52,22 @@ void	print_map(t_game *so_long)
 }
 
 //flood fill funtion allows to check for path for colectibles and exit
-int flood_fill(t_map *map, t_point curr, char **path)
+int	flood_fill(t_map *map, t_point curr, char **path)
 {
-    static unsigned int eggs = 0;
-    static int exit = 0;
+	static unsigned int	eggs = 0;
+	static int			exit = 0;
 
-    // Check if current position is out of bounds or is WATER
-    if (curr.x >= map->width || curr.y >= map->height || path[curr.y][curr.x] == WATER)
-        return (0);
-
-    // Count the eggs and check for exit
-    if (path[curr.y][curr.x] == EGG)
-        eggs++;
-    else if (path[curr.y][curr.x] == EXIT)
-        exit = 1;
-
-    // Mark the current position as WATER to avoid revisiting
-    path[curr.y][curr.x] = WATER;
-
-    // Recursively call flood_fill in all four directions
-    flood_fill(map, (t_point){curr.x + 1, curr.y}, path);
-    flood_fill(map, (t_point){curr.x - 1, curr.y}, path);
-    flood_fill(map, (t_point){curr.x, curr.y + 1}, path);
-    flood_fill(map, (t_point){curr.x, curr.y - 1}, path);
-
-    // Return whether all eggs were found and exit was reached
-    return (eggs == (unsigned int)map->eggs && exit == 1);
+	if (curr.x >= map->width || curr.y >= map->height || \
+		path[curr.y][curr.x] == WATER)
+		return (0);
+	if (path[curr.y][curr.x] == EGG)
+		eggs++;
+	else if (path[curr.y][curr.x] == EXIT)
+		exit = 1;
+	path[curr.y][curr.x] = WATER;
+	flood_fill(map, (t_point){curr.x + 1, curr.y}, path);
+	flood_fill(map, (t_point){curr.x - 1, curr.y}, path);
+	flood_fill(map, (t_point){curr.x, curr.y + 1}, path);
+	flood_fill(map, (t_point){curr.x, curr.y - 1}, path);
+	return (eggs == (unsigned int)map->eggs && exit == 1);
 }
-
-
