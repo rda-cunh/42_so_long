@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 19:01:46 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 01:42:51 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 11:52:11 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,15 @@
 # define PLAYER_TL	"assets/sprites/p.xpm"
 
 //pressed keys 
-#define KEY_ESC		65307
-#define KEY_W		119
-#define KEY_A		97
-#define KEY_S		115
-#define KEY_D		100
-#define KEY_UP		65362
-#define KEY_DOWN	65364
-#define KEY_LEFT	65361
-#define KEY_RIGHT	65363
+# define KEY_ESC	65307
+# define KEY_W		119
+# define KEY_A		97
+# define KEY_S		115
+# define KEY_D		100
+# define KEY_UP		65362
+# define KEY_DOWN	65364
+# define KEY_LEFT	65361
+# define KEY_RIGHT	65363
 
 //store sprite info
 typedef struct s_sprite
