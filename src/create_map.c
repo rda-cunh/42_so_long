@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 23:29:48 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/24 23:58:44 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ static void	read_map_line(t_game *so_long, int fd, unsigned int i)
 void	read_map(t_game *so_long, char *file)
 {
 	int				fd;
-	char			*line;
 	unsigned int	i;
 
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 23:53:28 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/25 00:26:47 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	move_player(t_game *so_long)
 		{
 			if (so_long->map->eggs == 0)
 			{
-				ft_printf("You reached the exit after collecting all \
-					the eggs!\n");
+				ft_printf("You reached the exit after collecting all eggs!\n");
 				end_game(so_long);
 				return ;
 			}
