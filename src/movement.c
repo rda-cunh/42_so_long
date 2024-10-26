@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/26 19:22:06 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/27 00:44:47 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ int	check_move(t_game *so_long)
 		&& get_object(so_long, so_long->next) != WATER);
 }
 
-//helper funtion for the move_player funtion above and keep it under 25 lines
-static void	handle_exit(t_game *so_long)
+//function for move_player, called when player steps on egg
+static void	handle_egg(t_game *so_long)
+{
+	so_long->map->eggs--;
+	if (so_long->map->eggs == 0)
+		ft_printf("All eggs collected!\n");
+}
+
+//function for move_player, called when player steps on exit
+static void	handle_exit(t_game *so_long, char *next_tile)
 {
 	if (so_long->map->eggs == 0)
 	{
@@ -29,62 +37,40 @@ static void	handle_exit(t_game *so_long)
 	}
 	else
 	{
+		*next_tile = PLAYER;
 		ft_printf("You need to collect all the eggs before exiting!\n");
-		so_long->map->grid[so_long->curr.y][so_long->curr.y] = GRASS;
 	}
 }
 
-// Update player's position on the map and handle exit if necessary
-static void	update_position(t_game *so_long, char next_tile)
-{
-	// Set the previous position to GRASS
-	so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS;
-
-	// Check if the player is on the exit tile
-	if (next_tile == EXIT && so_long->map->eggs > 0)
-		so_long->map->grid[so_long->next.y][so_long->next.x] = GRASS;
-	else
-		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER;
-
-	// Update current position to the new position
-	so_long->curr = so_long->next;
-}
-
-// Main function to move the player
+// Move the player based on the next tile content
 void	move_player(t_game *so_long)
 {
-	char	next_tile;
+	static char	previous_tile = GRASS;
+	char		*next_tile;
 
 	if (check_move(so_long))
 	{
-		next_tile = get_object(so_long, so_long->next);
-
-		// Handle egg collection
-		if (next_tile == EGG)
+		*next_tile = &so_long->map->grid[so_long->next.y][so_long->next.x];
+		if (*next_tile == EGG)
+			handle_egg(so_long);
+		if (*next_tile == EXIT)
 		{
-			so_long->map->eggs--;
-			if (so_long->map->eggs == 0)
-				ft_printf("All eggs collected!\n");
+			handle_exit(so_long, next_tile);
+			if (so_long->map->eggs > 0)
+				previous_tile = EXIT;
 		}
-
-		// Handle exit condition
-		if (next_tile == EXIT)
-			handle_exit(so_long);
-
-		// Update position
-		update_position(so_long, next_tile);
-
-		// Increment and print moves
+		else
+			previous_tile = GRASS;
+		so_long->map->grid[so_long->curr.y][so_long->curr.x] = previous_tile;
+		*next_tile = PLAYER;
+		so_long->curr = so_long->next;
 		so_long->map->moves++;
 		ft_printf("Moves: %d\n", so_long->map->moves);
-
-		// Render the updated map
 		render_map(so_long);
 	}
 }
 
-
-//handles keypress and updates next postition
+// Handles keypress and updates next position
 int	handle_keypress(int keycode, t_game *so_long)
 {
 	if (keycode == KEY_ESC)
