@@ -6,12 +6,13 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 19:36:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 23:31:49 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:25:18 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+//cleans map
 void	clean_map(t_map *map)
 {
 	int	i;
@@ -30,6 +31,7 @@ void	clean_map(t_map *map)
 	free(map);
 }
 
+//clean sprite images
 void	clean_sprites(t_game *so_long)
 {
 	if (so_long->grass.img)
@@ -44,6 +46,7 @@ void	clean_sprites(t_game *so_long)
 		mlx_destroy_image(so_long->display.mlx, so_long->player.img);
 }
 
+//clean game
 void	clean_game(t_game *so_long)
 {
 	if (!so_long)

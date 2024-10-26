@@ -6,12 +6,13 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 13:42:33 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:18:11 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+//static in check paths to clean the map copy in case of error (norm u25)
 static void	clean_tiles(char **tiles, unsigned int height)
 {
 	unsigned int	i;
@@ -27,6 +28,7 @@ static void	clean_tiles(char **tiles, unsigned int height)
 	free(tiles);
 }
 
+//uses flood_fill to verify if there is a valid path in the game
 void	check_paths(t_game *so_long)
 {
 	unsigned int	i;
@@ -55,6 +57,7 @@ void	check_paths(t_game *so_long)
 	clean_tiles(tiles, so_long->map->height);
 }
 
+//run a set of functions defined to check map requirements
 void	check_map(t_game *so_long)
 {
 	check_shape(so_long);

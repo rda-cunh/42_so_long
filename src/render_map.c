@@ -6,12 +6,13 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 00:02:52 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 14:00:17 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:31:22 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
+//mlx initialization
 void	launch_mlx(t_game *game)
 {
 	game->display.mlx = mlx_init();
@@ -41,7 +42,7 @@ void	load_images(t_game *game)
 		exit_error(game, "Error\nFailed to load images.\n");
 }
 
-//helper function for for render_map function above (norm u25)
+//helper function for render_map function above (norm u25)
 static void	render_tile(t_game *game, unsigned int x, unsigned int y)
 {
 	void	*img;

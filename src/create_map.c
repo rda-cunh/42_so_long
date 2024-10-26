@@ -6,13 +6,13 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 19:48:51 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/24 23:58:44 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:23:05 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-//alocates memory for the map
+//alocates memory to creat the map
 t_map	*create_map(unsigned int width, unsigned int height)
 {
 	t_map	*map;
@@ -37,7 +37,7 @@ t_map	*create_map(unsigned int width, unsigned int height)
 	return (map);
 }
 
-//function to count the number os lines (height) in file
+//function to count the number os lines (height) in map
 int	get_file_height(t_game *so_long, char *file)
 {
 	int		fd;
@@ -59,7 +59,7 @@ int	get_file_height(t_game *so_long, char *file)
 	return (height);
 }
 
-//read a line function used on read_map. also defines width variable
+//static funtion used on read_map to read line and define width (norm u25)
 static void	read_map_line(t_game *so_long, int fd, unsigned int i)
 {
 	char	*line;

@@ -6,28 +6,34 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 23:06:42 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 13:34:48 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 00:14:16 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/so_long.h"
 
-//checks if the map is rectangular
-int	check_shape(t_game *so_long)
+//checks minimum size and if map is rectangular
+void	check_shape(t_game *so_long)
 {
 	unsigned int	i;
+	size_t			line_length;
 
+	if (so_long->map->height < 3 || so_long->map->width < 3)
+		exit_error(so_long, "Error\nMap is too small.\n");
 	i = 0;
 	while (i < so_long->map->height)
 	{
-		if (ft_strlen(so_long->map->grid[i]) != so_long->map->width)
-			return (0);
+		line_length = ft_strlen(so_long->map->grid[i]);
+		if (so_long->map->grid[i][line_length - 1] == '\n')
+			line_length--;
+		if (line_length != so_long->map->width)
+			exit_error(so_long, "Error\nInvalid Map. The map is not \
+rectangular.\n");
 		i++;
 	}
-	return (1);
 }
 
-//function that verifies the border columns and then border lines
+//verifies the border columns and then border lines for water/walls
 void	check_walls(t_game *so_long)
 {
 	unsigned int	i;
@@ -56,6 +62,7 @@ on the last line.\n");
 	}
 }
 
+//static function used in count_map_objetct (norm u25)
 static void	process_map_cells(t_game *so_long, unsigned int x, unsigned int y)
 {
 	if (!ft_strchr(TILES, so_long->map->grid[y][x]))
@@ -75,6 +82,7 @@ object missing.\n");
 		so_long->map->exit++;
 }
 
+//count the number of objects and saves player position
 void	count_map_objects(t_game *so_long)
 {
 	unsigned int	x;
@@ -93,6 +101,7 @@ void	count_map_objects(t_game *so_long)
 	}
 }
 
+//verify if the number of objects in the map is correct
 void	verify_map_objects(t_game *so_long)
 {
 	if (so_long->map->eggs == 0)
