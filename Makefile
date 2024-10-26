@@ -6,7 +6,7 @@
 #    By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/10/26 18:19:25 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/10/26 18:44:15 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) 
 	$(MAKE) -C $(LIBFT_DIR)
 	$(MAKE) -C $(MLX_DIR)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/25 13:55:41 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 18:38:54 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void	handle_exit(t_game *so_long)
 		end_game(so_long);
 	}
 	else
+	{
 		ft_printf("You need to collect all the eggs before exiting!\n");
+		so_long->map->grid[so_long->curr.y][so_long->curr.y] = GRASS;
+	}
 }
 
 //move the player
@@ -46,7 +49,11 @@ void	move_player(t_game *so_long)
 				ft_printf("All eggs colected!\n");
 		}
 		if (next_tile == EXIT)
+		{
 			return (handle_exit(so_long));
+			if (so_long->map->eggs > 0)
+                so_long->map->grid[so_long->next.y][so_long->next.x] = GRASS;
+		}
 		so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS;
 		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER;
 		so_long->curr = so_long->next;
