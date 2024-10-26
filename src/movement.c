@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/26 18:38:54 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/26 19:22:06 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,23 @@ static void	handle_exit(t_game *so_long)
 	}
 }
 
-//move the player
+// Update player's position on the map and handle exit if necessary
+static void	update_position(t_game *so_long, char next_tile)
+{
+	// Set the previous position to GRASS
+	so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS;
+
+	// Check if the player is on the exit tile
+	if (next_tile == EXIT && so_long->map->eggs > 0)
+		so_long->map->grid[so_long->next.y][so_long->next.x] = GRASS;
+	else
+		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER;
+
+	// Update current position to the new position
+	so_long->curr = so_long->next;
+}
+
+// Main function to move the player
 void	move_player(t_game *so_long)
 {
 	char	next_tile;
@@ -42,26 +58,31 @@ void	move_player(t_game *so_long)
 	if (check_move(so_long))
 	{
 		next_tile = get_object(so_long, so_long->next);
+
+		// Handle egg collection
 		if (next_tile == EGG)
 		{
 			so_long->map->eggs--;
 			if (so_long->map->eggs == 0)
-				ft_printf("All eggs colected!\n");
+				ft_printf("All eggs collected!\n");
 		}
+
+		// Handle exit condition
 		if (next_tile == EXIT)
-		{
-			return (handle_exit(so_long));
-			if (so_long->map->eggs > 0)
-                so_long->map->grid[so_long->next.y][so_long->next.x] = GRASS;
-		}
-		so_long->map->grid[so_long->curr.y][so_long->curr.x] = GRASS;
-		so_long->map->grid[so_long->next.y][so_long->next.x] = PLAYER;
-		so_long->curr = so_long->next;
+			handle_exit(so_long);
+
+		// Update position
+		update_position(so_long, next_tile);
+
+		// Increment and print moves
 		so_long->map->moves++;
 		ft_printf("Moves: %d\n", so_long->map->moves);
+
+		// Render the updated map
 		render_map(so_long);
 	}
 }
+
 
 //handles keypress and updates next postition
 int	handle_keypress(int keycode, t_game *so_long)
