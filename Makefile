@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+         #
+#    By: rda-cunh <rda-cunh@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 23:59:04 by rda-cunh          #+#    #+#              #
-#    Updated: 2024/10/25 23:16:39 by rda-cunh         ###   ########.fr        #
+#    Updated: 2024/10/26 18:19:25 by rda-cunh         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,14 +33,10 @@ RM = rm -rf
 
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT) $(MLX_LIB)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)
-
-$(LIBFT): 
+$(NAME): $(OBJS)
 	$(MAKE) -C $(LIBFT_DIR)
-
-$(MLX_LIB):
 	$(MAKE) -C $(MLX_DIR)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT) $(MLX_FLAGS)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
