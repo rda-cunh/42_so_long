@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 01:31:50 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/27 00:44:47 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/27 00:50:26 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	move_player(t_game *so_long)
 
 	if (check_move(so_long))
 	{
-		*next_tile = &so_long->map->grid[so_long->next.y][so_long->next.x];
+		next_tile = &so_long->map->grid[so_long->next.y][so_long->next.x];
 		if (*next_tile == EGG)
 			handle_egg(so_long);
 		if (*next_tile == EXIT)
