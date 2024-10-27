@@ -6,7 +6,7 @@
 /*   By: rda-cunh <rda-cunh@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 01:32:31 by rda-cunh          #+#    #+#             */
-/*   Updated: 2024/10/26 00:18:11 by rda-cunh         ###   ########.fr       */
+/*   Updated: 2024/10/27 22:54:56 by rda-cunh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,16 @@ static void	clean_tiles(char **tiles, unsigned int height)
 	free(tiles);
 }
 
-//uses flood_fill to verify if there is a valid path in the game
-void	check_paths(t_game *so_long)
+//helper function to allocate and duplicate map grid (norm u25)
+static char	**duplicate_map(t_game *so_long)
 {
 	unsigned int	i;
-	int				reach_exit;
 	char			**tiles;
 
-	i = 0;
-	reach_exit = 0;
 	tiles = ft_calloc(so_long->map->height + 1, sizeof(char *));
 	if (!tiles)
 		exit_error(so_long, "Error\nMemory allocation failed.");
+	i = 0;
 	while (i < so_long->map->height)
 	{
 		tiles[i] = ft_strdup(so_long->map->grid[i]);
@@ -50,10 +48,23 @@ void	check_paths(t_game *so_long)
 		}
 		i++;
 	}
+	return (tiles);
+}
+
+// Check if all paths are reachable
+void	check_paths(t_game *so_long)
+{
+	char	**tiles;
+	int		reach_exit;
+
+	tiles = duplicate_map(so_long);
 	reach_exit = flood_fill(so_long->map, (t_point){so_long->map->player.x, \
-				so_long->map->player.y}, tiles);
+	so_long->map->player.y}, tiles);
 	if (!reach_exit)
+	{
+		clean_tiles(tiles, so_long->map->height);
 		exit_error(so_long, "Error\nMap has invalid path.\n");
+	}
 	clean_tiles(tiles, so_long->map->height);
 }
 
